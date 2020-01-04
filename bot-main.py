@@ -2,17 +2,16 @@ import discord
 from discord.ext import commands
 import os
 
-client = discord.Client()
+bot = discord.Bot()
 
-@client.event
+@bot.event
 async def botLoad():
     print('Bot logged in as {0.user}'.format(client))
 
-@client.event
-async def recieveMessage(message):
-    if message.author == client.user:
-        return
-    elif message.content.startswith('$hello'):
-        await message.channel.send('Greetings, mortal')
+bot = commands.Bot(command_prefix='xkcd')
 
-client.run('NjYyOTc5Nzc1MDYwNjM5NzUx.XhDPjA.BTJyeqbCGRsBZZMu6eeQZxF8HGk')
+@bot.command
+async def comic(context, *, args):
+    await context.send 'https://xkcd.com/%s' % (args)
+
+bot.run('pretend this is a token')
