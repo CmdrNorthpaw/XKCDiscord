@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
 from googlesearch import search
-import os
+from os import environ
+key = environ.get('discordKey')
 
 bot = commands.Bot(command_prefix='xkcd ')
 
@@ -19,8 +20,8 @@ async def fetch(ctx, arg):
 @bot.command()
 async def find(ctx, *, arg):
     await ctx.send('`Searching for xkcd comic...`')
-    for query in search(arg, tld=com, num=1, stop=1, pause=2):
+    for query in search(arg, tld='com', num=1, stop=1, pause=2):
         await ctx.send(query)
 
 
-bot.run('NjYyOTc5Nzc1MDYwNjM5NzUx.XhSzng.l4BQ0pyQUINm448ULRbc-6EKdAk')
+bot.run(key)
