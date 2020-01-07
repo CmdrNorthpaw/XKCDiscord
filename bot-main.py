@@ -23,4 +23,4 @@ async def find(ctx, *, arg):
         await ctx.send(query)
 
 
-bot.run('')
+bot.run('NjYyOTc5Nzc1MDYwNjM5NzUx.XhSzng.l4BQ0pyQUINm448ULRbc-6EKdAk')
