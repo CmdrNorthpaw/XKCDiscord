@@ -18,9 +18,9 @@ async def fetch(ctx, arg):
 
 @bot.command()
 async def find(ctx, arg):
-    ctx.send('`Searching for xkcd comic...`')
-    for query in search(arg, tld=com, num=1 pause=2):
-        ctx.send(query)
+    await ctx.send('`Searching for xkcd comic...`')
+    for query in search(arg, tld=com, num=1, stop=1, pause=2):
+        await ctx.send(query)
 
 
-bot.run('')
+bot.run('NjYyOTc5Nzc1MDYwNjM5NzUx.XhSJQg.N9qHbgvC3bfy7ufWPoMucTYJCHo')
