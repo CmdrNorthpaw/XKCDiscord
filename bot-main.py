@@ -5,10 +5,10 @@ import os
 bot = discord.Bot()
 
 @bot.event
-async def botLoad():
-    print('Bot logged in as {0.user}'.format(client))
+async def on_ready():
+    print('Bot logged in.')
 
-bot = commands.Bot(command_prefix='xkcd')
+bot = commands.Bot(command_prefix='xkcd ')
 
 @bot.command
 async def comic(context, *, args):
