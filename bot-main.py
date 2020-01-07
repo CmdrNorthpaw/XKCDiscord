@@ -17,7 +17,7 @@ async def fetch(ctx, arg):
         await ctx.send('https://xkcd.com/%s' % str(arg))
 
 @bot.command()
-async def find(ctx, arg):
+async def find(ctx, *, arg):
     await ctx.send('`Searching for xkcd comic...`')
     for query in search(arg, tld=com, num=1, stop=1, pause=2):
         await ctx.send(query)
