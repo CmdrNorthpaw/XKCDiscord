@@ -125,5 +125,7 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
+.google-cookie
+
 # Pyre type checker
 .pyre/
