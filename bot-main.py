@@ -10,7 +10,10 @@ async def on_ready():
 
 @bot.command()
 async def fetch(ctx, arg):
-    await ctx.send('https://xkcd.com/%s' % str(arg))
+    if arg == 'latest':
+        await ctx.send('https://xkcd.com')
+    else:
+        await ctx.send('https://xkcd.com/%s' % str(arg))
 
 
 bot.run('Pretend this is a token')
