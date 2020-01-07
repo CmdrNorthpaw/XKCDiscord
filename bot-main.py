@@ -24,7 +24,8 @@ async def fetch(ctx, arg):
 @bot.command()
 async def find(ctx, *, arg):
     await ctx.send('`Searching for xkcd comic...`')
-    for query in search(arg, tld='com', num=1, stop=1, pause=2):
+    query = f'site:xkcd.com {arg}'
+    for query in search(query, tld='com', num=1, stop=1, pause=2):
         await ctx.send(query)
 
 # Actually runs the bot, using the key from line 6 as an argument
