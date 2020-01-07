@@ -26,10 +26,10 @@ async def find(ctx, *, arg):
     await ctx.send('`Searching for xkcd comic...`')
     query = f'site:www.xkcd.com {arg}'
     for request in search(query, tld='com', num=10, stop=1, pause=2):
-        strSearch = str(search)
+        strSearch = str(request)
         print(strSearch)
-        if strSearch[10:15] == 'xkcd':
-            await ctx.send(search)
+        if strSearch[8:12] == 'xkcd':
+            await ctx.send(request)
             break
 
 # Actually runs the bot, using the key from line 6 as an argument
