@@ -8,7 +8,9 @@ bot = commands.Bot(command_prefix='xkcd ')
 async def on_ready():
     print('Bot logged in.')
 
+@bot.command()
+async def fetch(ctx, arg):
+    await ctx.send('https://xkcd.com/%s' % str(arg))
 
 
-
-bot.run('NjYyOTc5Nzc1MDYwNjM5NzUx.XhR8aw.lELfhHQYp3o8gmKv1zisTOS6ePM')
+bot.run('Pretend this is a token')
