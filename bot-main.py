@@ -28,9 +28,10 @@ async def find(ctx, *, arg):
     query = f'site:www.xkcd.com {arg}'
     search = qwant.items('site:xkcd.com google', count=1)
     search = search[0]
-    search = search.replace('w', '')
-    print(search['url'])
-    await ctx.send(search['url'])
+    search = str(search['url'])
+    search = search.replace('www.', '')
+    print(search)
+    await ctx.send(search)
 
 # Actually runs the bot, using the key from line 6 as an argument
 bot.run(key)
