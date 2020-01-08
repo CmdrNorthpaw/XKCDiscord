@@ -28,6 +28,7 @@ async def find(ctx, *, arg):
     query = f'site:www.xkcd.com {arg}'
     search = qwant.items('site:xkcd.com google', count=1)
     search = search[0]
+    search = search.replace('w', '')
     print(search['url'])
     await ctx.send(search['url'])
 
