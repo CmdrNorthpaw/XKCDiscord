@@ -1,7 +1,7 @@
 # Imports the modules for operation and gets the key from the environment
 import discord
 from discord.ext import commands
-from googlesearch import search
+from googlesearch.googlesearch import GoogleSearch
 from os import environ
 key = environ.get('discordKey')
 
@@ -25,11 +25,13 @@ async def fetch(ctx, arg):
 async def find(ctx, *, arg):
     await ctx.send('`Searching for xkcd comic...`')
     query = f'site:www.xkcd.com {arg}'
-    for request in search(query, tld='com', num=10, stop=1, pause=2):
-        strSearch = str(search)
+    request = GoogleSearch().search(query)
+    for result in request.results():
+        print(result)
+        strSearch = str(result)
         print(strSearch)
-        if strSearch[10:15] == 'xkcd':
-            await ctx.send(search)
+        if strSearch[8:12] == 'xkcd':
+            await ctx.send(result)
             break
 
 # Actually runs the bot, using the key from line 6 as an argument
