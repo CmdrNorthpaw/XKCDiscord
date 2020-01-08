@@ -1,7 +1,7 @@
 # Imports the modules for operation and gets the key from the environment
 import discord
 from discord.ext import commands
-from googlesearch.googlesearch import GoogleSearch
+import duckduckgo
 from os import environ
 key = environ.get('discordKey')
 
@@ -25,14 +25,8 @@ async def fetch(ctx, arg):
 async def find(ctx, *, arg):
     await ctx.send('`Searching for xkcd comic...`')
     query = f'site:www.xkcd.com {arg}'
-    request = GoogleSearch().search(query)
-    for result in request.results():
-        print(result)
-        strSearch = str(result)
-        print(strSearch)
-        if strSearch[8:12] == 'xkcd':
-            await ctx.send(result)
-            break
+    for result in duckduckgo.search(query, max_results=1):
+        await ctx.send(result)
 
 # Actually runs the bot, using the key from line 6 as an argument
 bot.run(key)
