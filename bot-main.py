@@ -48,16 +48,17 @@ async def on_reaction_add(reaction, user):
     global search
     print(reaction.emoji)
     print(user.name)
-    if reaction.    emoji == '❎' and user.name != 'XKCDiscord':
+    channel = reaction.message.channel
+    if reaction.emoji == '❎' and user.name != 'XKCDiscord':
         searchListIndice = searchListIndice + 1
-        if searchListIndice > 10:
-            print("Sorry, that's all the comics I have! Try a different search term.")
+        if searchListIndice > len(searchList):
+            await channel.send('Sorry, that\'s all the comics I have! Try a different search term')
         else:
             search = searchList[searchListIndice]
             search = str(search['url'])
             search = search.replace('www.', '')
-            await ctx.send(search)
-            await ctx.send('Wrong comic? React with ❎ to tell me!')
+            await channel.send(search)
+            await channel.send('`Wrong comic? React with ❎ to tell me`')
 
 
 # Actually runs the bot, using the key from line 6 as an argument
