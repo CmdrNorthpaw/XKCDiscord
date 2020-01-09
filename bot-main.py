@@ -39,7 +39,8 @@ async def find(ctx, *, arg):
     search = search.replace('www.', '')
     print(search)
     await ctx.send(search)
-    await ctx.send('Wrong comic? React with ❎ to tell me!')
+    await ctx.send('`Wrong comic? React with ❎ to tell me!`')
+    await message.add_reaction('❎')
 
 @bot.event
 async def on_reaction_add(reaction, user):
@@ -58,7 +59,8 @@ async def on_reaction_add(reaction, user):
             search = str(search['url'])
             search = search.replace('www.', '')
             await channel.send(search)
-            await channel.send('`Wrong comic? React with ❎ to tell me`')
+            message = await channel.send('`Wrong comic? React with ❎ to tell me`')
+            await message.add_reaction('❎')
 
 
 # Actually runs the bot, using the key from line 6 as an argument
