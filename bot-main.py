@@ -11,6 +11,8 @@ bot = commands.Bot(command_prefix='xkcd ')
 searchList = []
 searchListIndice = 0
 search = ''
+searchResult = ''
+sorryMessage = ''
 # Tells me when the bot logs in.
 @bot.event
 async def on_ready():
@@ -30,6 +32,8 @@ async def find(ctx, *, arg):
     global search
     global searchList
     global searchListIndice
+    global searchResult
+    global sorryMessage
     await ctx.send('`Searching for xkcd comic...`')
     query = f'site:www.xkcd.com {arg}'
     searchList = qwant.items(query, count=10)
@@ -38,7 +42,7 @@ async def find(ctx, *, arg):
     search = str(search['url'])
     search = search.replace('www.', '')
     print(search)
-    await ctx.send(search)
+    searchResult = await ctx.send(search)
     message = await ctx.send('`Wrong comic? React with ❎ to tell me!`')
     await message.add_reaction('❎')
 
@@ -47,18 +51,20 @@ async def on_reaction_add(reaction, user):
     global searchList
     global searchListIndice
     global search
-    print(reaction.emoji)
-    print(user.name)
+    global searchResult
+    global sorryMessage
     channel = reaction.message.channel
     if reaction.emoji == '❎' and user.name != 'XKCDiscord':
         searchListIndice = searchListIndice + 1
         if searchListIndice > len(searchList):
             await channel.send('Sorry, that\'s all the comics I have! Try a different search term')
         else:
+            await message.delete(searchResult)
+            await channel.delete_message(sorryMessage)
             search = searchList[searchListIndice]
             search = str(search['url'])
             search = search.replace('www.', '')
-            await channel.send(search)
+            searchResult = await channel.send(search)
             message = await channel.send('`Wrong comic? React with ❎ to tell me`')
             await message.add_reaction('❎')
 
