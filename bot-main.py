@@ -39,7 +39,7 @@ async def find(ctx, *, arg):
     search = search.replace('www.', '')
     print(search)
     await ctx.send(search)
-    await ctx.send('`Wrong comic? React with ❎ to tell me!`')
+    message = await ctx.send('`Wrong comic? React with ❎ to tell me!`')
     await message.add_reaction('❎')
 
 @bot.event
