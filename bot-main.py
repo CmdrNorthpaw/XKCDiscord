@@ -39,7 +39,7 @@ async def find(ctx, *, arg):
 async def on_reaction_add(reaction, user):
     print(reaction.emoji)
     print(user.name)
-    if reaction.emoji == '❎' and user.name != 'XKCDiscord#8517':
+    if reaction.emoji == '❎' and user.name != 'XKCDiscord':
         searchListIndice = searchListIndice + 1
         search = searchList[searchListIndice]
         search = str(search['url'])
