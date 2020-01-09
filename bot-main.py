@@ -24,15 +24,27 @@ async def fetch(ctx, arg):
 #Controls the bot's find command
 @bot.command()
 async def find(ctx, *, arg):
-    search = 'Null'
     await ctx.send('`Searching for xkcd comic...`')
     query = f'site:www.xkcd.com {arg}'
-    search = qwant.items(query, count=1)
-    search = search[0]
+    searchList = qwant.items(query, count=10)
+    searchListIndice = 0
+    search = searchList[0]
     search = str(search['url'])
     search = search.replace('www.', '')
     print(search)
     await ctx.send(search)
+    await ctx.send('Wrong comic? React with ❎ to tell me!')
+
+@bot.event
+async def on_reaction_add(reaction, user):
+    print(reaction.emoji)
+    print(user.name)
+    if reaction.emoji == '❎' and user.name != 'XKCDiscord#8517':
+        searchListIndice = searchListIndice + 1
+        search = searchList[searchListIndice]
+        search = str(search['url'])
+        search = search.replace('www.', '')
+        await ctx.send(search)
 
 # Actually runs the bot, using the key from line 6 as an argument
 bot.run(key)
