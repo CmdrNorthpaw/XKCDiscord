@@ -12,7 +12,7 @@ searchList = []
 searchListIndice = 0
 search = ''
 searchResult = ''
-sorryMessage = ''
+postMessage = ''
 # Tells me when the bot logs in.
 @bot.event
 async def on_ready():
@@ -33,8 +33,9 @@ async def find(ctx, *, arg):
     global searchList
     global searchListIndice
     global searchResult
-    global sorryMessage
-    await ctx.send('`Searching for xkcd comic...`')
+    global postMessage
+    global preMessage
+    preMessage = await ctx.send('`Searching for xkcd comic...`')
     query = f'site:www.xkcd.com {arg}'
     searchList = qwant.items(query, count=10)
     searchListIndice = 0
@@ -43,8 +44,8 @@ async def find(ctx, *, arg):
     search = search.replace('www.', '')
     print(search)
     searchResult = await ctx.send(search)
-    message = await ctx.send('`Wrong comic? React with ❎ to tell me!`')
-    await message.add_reaction('❎')
+    postMessage = await ctx.send('`Wrong comic? React with ❎ to tell me!`')
+    await postMessage.add_reaction('❎')
 
 @bot.event
 async def on_reaction_add(reaction, user):
@@ -52,21 +53,22 @@ async def on_reaction_add(reaction, user):
     global searchListIndice
     global search
     global searchResult
-    global sorryMessage
+    global postMessage
+    global preMessage
     channel = reaction.message.channel
     if reaction.emoji == '❎' and user.name != 'XKCDiscord':
         searchListIndice = searchListIndice + 1
         if searchListIndice > len(searchList):
             await channel.send('Sorry, that\'s all the comics I have! Try a different search term')
         else:
-            await message.delete(searchResult)
-            await channel.delete_message(sorryMessage)
+            await searchResult.delete()
+            await postMessage.delete()
             search = searchList[searchListIndice]
             search = str(search['url'])
             search = search.replace('www.', '')
             searchResult = await channel.send(search)
-            message = await channel.send('`Wrong comic? React with ❎ to tell me`')
-            await message.add_reaction('❎')
+            postMessage = await channel.send('`Wrong comic? React with ❎ to tell me`')
+            await postMessage.add_reaction('❎')
 
 
 # Actually runs the bot, using the key from line 6 as an argument
