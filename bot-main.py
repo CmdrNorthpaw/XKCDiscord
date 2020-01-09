@@ -29,11 +29,11 @@ async def fetch(ctx, arg):
 async def find(ctx, *, arg):
     await ctx.send('`Searching for xkcd comic...`')
     query = f'site:www.xkcd.com {arg}'
-    searchList = qwant.items(query, count=10)
-    searchListIndice = 0
-    search = searchList[0]
-    search = str(search['url'])
-    search = search.replace('www.', '')
+    global searchList = qwant.items(query, count=10)
+    global searchListIndice = 0
+    global search = searchList[0]
+    global search = str(search['url'])
+    global search = search.replace('www.', '')
     print(search)
     await ctx.send(search)
     await ctx.send('Wrong comic? React with ❎ to tell me!')
@@ -43,13 +43,13 @@ async def on_reaction_add(reaction, user):
     print(reaction.emoji)
     print(user.name)
     if reaction.emoji == '❎' and user.name != 'XKCDiscord':
-        searchListIndice = searchListIndice + 1
+        global searchListIndice = searchListIndice + 1
         if searchListIndice > 10:
             print("Sorry, that's all the comics I have! Try a different search term.")
         else:
-            search = searchList[searchListIndice]
-            search = str(search['url'])
-            search = search.replace('www.', '')
+            global search = searchList[searchListIndice]
+            global search = str(search['url'])
+            global search = search.replace('www.', '')
             await ctx.send(search)
             await ctx.send('Wrong comic? React with ❎ to tell me!')
 
