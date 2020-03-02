@@ -36,7 +36,7 @@ async def find(ctx, *, arg):
     global postMessage
     global preMessage
     preMessage = await ctx.send('`Searching for xkcd comic...`')
-    query = f'site:www.xkcd.com {arg}'
+    query = f'site:xkcd.com {arg}'
     searchList = qwant.items(query, count=10)
     searchListIndice = 0
     search = searchList[0]
