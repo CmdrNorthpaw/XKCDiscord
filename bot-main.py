@@ -89,5 +89,7 @@ async def help(ctx):
     value='This command is used to search for a cartoon (say twitter bot). Perfect for when you know what cartoon you want but you can\'t remember the exact number. Don\'t worry if it doesn\'t get the right cartoon first time, just click the ❎ to see the next result'
     )
 
+    await ctx.send(embed)
+
 # Actually runs the bot, using the key from line 6 as an argument
 bot.run(key)
