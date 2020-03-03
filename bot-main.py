@@ -74,11 +74,11 @@ async def on_reaction_add(reaction, user):
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(
-    color=discord.colour.Purple(),
+    color=discord.Colour.purple(),
     title='XKCDiscord Help',
     description='Thank you for using XKCDiscord! Here are some commands to help you along the way',
     )
-    embed.set_thumbnail(url='https://what-if.xkcd.com/imgs/a/14/short_answers_headscratch.png')
+    embed.set_thumbnail(url='XKCDiscord Help.png')
     embed.set_author(name='XKCDiscord, by CmdrNorthpaw', icon_url='https://cdn.discordapp.com/avatars/662979775060639751/7a44d391e0bd8c02ce9a00b7e7b53b3e.png')
     embed.add_field(
     name='xkcd fetch',
@@ -89,7 +89,7 @@ async def help(ctx):
     value='This command is used to search for a cartoon (say twitter bot). Perfect for when you know what cartoon you want but you can\'t remember the exact number. Don\'t worry if it doesn\'t get the right cartoon first time, just click the ❎ to see the next result'
     )
 
-    await ctx.send(embed)
+    await ctx.send(embed=embed)
 
 # Actually runs the bot, using the key from line 6 as an argument
 bot.run(key)
