@@ -86,7 +86,7 @@ async def help(ctx):
     )
     embed.add_field(
     name='xkcd find'
-    value='This command is used to search for a cartoon (say twitter bot). Perfect for when you know what cartoon you want but you can\'t remember the exact number'
+    value='This command is used to search for a cartoon (say twitter bot). Perfect for when you know what cartoon you want but you can\'t remember the exact number. Don\'t worry if it doesn\'t get the right cartoon first time, just click the ❎ to see the next result'
     )
 
 # Actually runs the bot, using the key from line 6 as an argument
