@@ -7,6 +7,7 @@ from os import environ
 key = environ.get('discordKey')
 
 bot = commands.Bot(command_prefix='xkcd ')
+bot.remove_command('help')
 
 searchList = []
 searchListIndice = 0
@@ -70,6 +71,23 @@ async def on_reaction_add(reaction, user):
             postMessage = await channel.send('`Wrong comic? React with ❎ to tell me`')
             await postMessage.add_reaction('❎')
 
+@bot.command
+async def help(ctx):
+    embed = discord.Embed(
+    color=discord.colour.Purple()
+    title='XKCDiscord Help'
+    description='Thank you for using XKCDiscord! Here are some commands to help you along the way'
+    )
+    embed.set_thumbnail(url='https://what-if.xkcd.com/imgs/a/14/short_answers_headscratch.png')
+    embed.set_author(name='XKCDiscord, by CmdrNorthpaw', icon_url='https://cdn.discordapp.com/avatars/662979775060639751/7a44d391e0bd8c02ce9a00b7e7b53b3e.png')
+    embed.add_field(
+    name='xkcd fetch'
+    value='This command takes the cartoon number as an argument (say 1646) and posts that comic to chat. You can also fetch the latest comic with `xkcd fetch latest`'
+    )
+    embed.add_field(
+    name='xkcd find'
+    value='This command is used to search for a cartoon (say twitter bot). Perfect for when you know what cartoon you want but you can\'t remember the exact number'
+    )
 
 # Actually runs the bot, using the key from line 6 as an argument
 bot.run(key)
