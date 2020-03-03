@@ -71,7 +71,7 @@ async def on_reaction_add(reaction, user):
             postMessage = await channel.send('`Wrong comic? React with ❎ to tell me`')
             await postMessage.add_reaction('❎')
 
-@bot.command
+@bot.command()
 async def help(ctx):
     embed = discord.Embed(
     color=discord.colour.Purple(),
