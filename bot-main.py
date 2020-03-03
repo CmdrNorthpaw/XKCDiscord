@@ -74,18 +74,18 @@ async def on_reaction_add(reaction, user):
 @bot.command
 async def help(ctx):
     embed = discord.Embed(
-    color=discord.colour.Purple()
-    title='XKCDiscord Help'
-    description='Thank you for using XKCDiscord! Here are some commands to help you along the way'
+    color=discord.colour.Purple(),
+    title='XKCDiscord Help',
+    description='Thank you for using XKCDiscord! Here are some commands to help you along the way',
     )
     embed.set_thumbnail(url='https://what-if.xkcd.com/imgs/a/14/short_answers_headscratch.png')
     embed.set_author(name='XKCDiscord, by CmdrNorthpaw', icon_url='https://cdn.discordapp.com/avatars/662979775060639751/7a44d391e0bd8c02ce9a00b7e7b53b3e.png')
     embed.add_field(
-    name='xkcd fetch'
+    name='xkcd fetch',
     value='This command takes the cartoon number as an argument (say 1646) and posts that comic to chat. You can also fetch the latest comic with `xkcd fetch latest`'
     )
     embed.add_field(
-    name='xkcd find'
+    name='xkcd find',
     value='This command is used to search for a cartoon (say twitter bot). Perfect for when you know what cartoon you want but you can\'t remember the exact number. Don\'t worry if it doesn\'t get the right cartoon first time, just click the ❎ to see the next result'
     )
 
